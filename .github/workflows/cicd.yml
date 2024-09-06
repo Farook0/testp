@@ -59,5 +59,10 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Verify Docker login
+      run: docker info
+
     - name: Push Docker image
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/flask-calculator
+      run: |
+        docker tag flask-calculator ${{ secrets.DOCKER_USERNAME }}/flask-calculator
+        docker push ${{ secrets.DOCKER_USERNAME }}/flask-calculator
