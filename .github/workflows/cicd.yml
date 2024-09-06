@@ -62,7 +62,9 @@ jobs:
     - name: Verify Docker login
       run: docker info
 
+    - name: Tag Docker image
+      run: docker tag flask-calculator ${{ secrets.DOCKER_USERNAME }}/flask-calculator
+
     - name: Push Docker image
       run: |
-        docker tag flask-calculator ${{ secrets.DOCKER_USERNAME }}/flask-calculator
         docker push ${{ secrets.DOCKER_USERNAME }}/flask-calculator
